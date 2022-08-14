@@ -7,6 +7,7 @@ import {ErrorMessage} from "../components/ErrorMessage";
 import {Product} from "../components/Product";
 import {Modal} from "../components/Modal";
 import {CreateProduct} from "../components/CreateProduct";
+import {Categories} from "../components/Categories";
 
 export function ProductsPage() {
     const {products, error, loading, addProduct} = useProducts();
@@ -21,6 +22,7 @@ export function ProductsPage() {
         <div className="container mx-auto max-w-2xl pt-5">
             {loading && <Loader/>}
             {error && <ErrorMessage error={error}/>}
+            <Categories></Categories>
             {products.map(product => <Product key={product.id} product={product}/>)}
             {modal && <Modal closeModal={close} title="Create new product">
                 <CreateProduct onCreate={createHandler}/>
