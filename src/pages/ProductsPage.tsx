@@ -1,13 +1,14 @@
-import {useProducts} from "../hooks/products";
+import {useProducts} from "../hooks/useProducts";
 import React, {useContext} from "react";
 import {ModalContext} from "../context/ModalContext";
 import {IProduct} from "../models";
 import {Loader} from "../components/Loader";
-import {ErrorMessage} from "../components/ErrorMessage";
+import {ErrorMessage} from "../components/common/ErrorMessage";
 import {Product} from "../components/Product";
-import {Modal} from "../components/Modal";
+import {Modal} from "../components/common/Modal";
 import {CreateProduct} from "../components/CreateProduct";
-import {Categories} from "../components/Categories";
+import {Categories} from "../components/categories";
+
 
 export function ProductsPage() {
     const {products, error, loading, addProduct} = useProducts();
@@ -22,7 +23,7 @@ export function ProductsPage() {
         <div className="container mx-auto max-w-2xl pt-5">
             {loading && <Loader/>}
             {error && <ErrorMessage error={error}/>}
-            <Categories></Categories>
+            <Categories/>
             {products.map(product => <Product key={product.id} product={product}/>)}
             {modal && <Modal closeModal={close} title="Create new product">
                 <CreateProduct onCreate={createHandler}/>

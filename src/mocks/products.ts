@@ -1,6 +1,6 @@
-import {IProduct} from "../models";
+import {TProduct} from "../store/productsReducer/TProductsStateModel";
 
-export const products: IProduct[] = [
+export const products: TProduct[] = [
     {
         "id": 1,
         "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
