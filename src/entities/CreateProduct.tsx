@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {IProduct} from "../models";
+import {TProduct} from "../store/productsReducer/TProductsStateModel";
 import axios from "axios";
 import {ErrorMessage} from "./common/ErrorMessage";
 
 
-const productData: IProduct = {
+const productData: TProduct = {
     title: '',
     price: 13.5,
     description: 'lorem ipsum set',
@@ -17,7 +17,7 @@ const productData: IProduct = {
 }
 
 interface CreateProductProps {
-    onCreate: (product:IProduct) => void
+    onCreate: (product:TProduct) => void
 }
 
 export function CreateProduct({onCreate}: CreateProductProps) {
@@ -35,7 +35,7 @@ export function CreateProduct({onCreate}: CreateProductProps) {
         }
 
         productData.title = title;
-        const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData);
+        const response = await axios.post<TProduct>('https://fakestoreapi.com/products', productData);
         onCreate(response.data);
     }
 

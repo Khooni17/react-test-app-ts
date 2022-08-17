@@ -1,8 +1,10 @@
-import {IProduct} from "../models";
+import React from "react";
 import {useState} from "react";
+import {TProduct} from "../store/productsReducer/TProductsStateModel";
+
 
 interface ProductProps {
-    product: IProduct
+    product: TProduct
 }
 
 export function Product({product}: ProductProps) {
