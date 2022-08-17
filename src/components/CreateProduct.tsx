@@ -22,8 +22,8 @@ interface CreateProductProps {
 
 export function CreateProduct({onCreate}: CreateProductProps) {
 
-    let [title, setTitle] = useState('')
-    let [error, setError] = useState('')
+    const [title, setTitle] = useState('')
+    const [error, setError] = useState('')
 
     const submitHandler = async (e: React.FormEvent) => {
         setError('');
