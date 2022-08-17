@@ -1,8 +1,9 @@
 import React from "react";
-import {Route, Routes} from 'react-router-dom';
-import {ProductsPage} from "./pages/ProductsPage";
+import {Route, Routes, Navigate} from 'react-router-dom';
+import {ProductsList} from "./pages/products-list";
+import {ProductPage} from "./pages/product-page";
 import {AboutPage} from "./pages/AboutPage";
-import {Navigation} from "./components/Navigation";
+import {Navigation} from "./entities/Navigation";
 import {Provider} from "react-redux";
 import {store} from "./store";
 
@@ -12,10 +13,15 @@ function App() {
             <Provider store={store}>
                 <Navigation/>
                 <Routes>
-                    <Route path="/" element={<ProductsPage/>}/>
+                    <Route path="/" element={<Navigate to="/products"/>}></Route>
+
+                    <Route path="/products" element={<ProductsList/>}>
+                    </Route>
+                    <Route path="/products/:id" element={<ProductPage/>}/>
+
                     <Route path="/about" element={<AboutPage/>}/>
                 </Routes>
-            </Provider>/
+            </Provider>
         </>
 
     )

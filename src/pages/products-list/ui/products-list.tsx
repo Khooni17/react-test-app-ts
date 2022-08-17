@@ -1,16 +1,16 @@
-import {useProducts} from "../hooks/useProducts";
+import {useProducts} from "../model";
 import React, {useContext} from "react";
-import {ModalContext} from "../context/ModalContext";
-import {TProduct} from "../store/productsReducer/TProductsStateModel";
-import {Loader} from "../entities/common/Loader";
-import {ErrorMessage} from "../entities/common/ErrorMessage";
-import {Product} from "../entities/Product";
-import {Modal} from "../entities/common/Modal";
-import {CreateProduct} from "../entities/CreateProduct";
-import {Categories} from "../entities/categories";
+import {ModalContext} from "../../../context/ModalContext";
+import {TProduct} from "../../../store/productsReducer/TProductsStateModel";
+import {Loader} from "../../../entities/common/Loader";
+import {ErrorMessage} from "../../../entities/common/ErrorMessage";
+import {Product} from "../../../entities/Product";
+import {Modal} from "../../../entities/common/Modal";
+import {CreateProduct} from "../../../entities/CreateProduct";
+import {Categories} from "../../../entities/categories";
 
 
-export function ProductsPage() {
+export function ProductsList() {
     const {products, error, loading, addProduct} = useProducts();
     const {modal, open, close} = useContext(ModalContext);
 
