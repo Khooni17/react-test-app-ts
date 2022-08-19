@@ -17,13 +17,12 @@ export const App = () => {
           <Provider store={store}>
             <Navigation />
             <Routes>
-              <Route path='/' element={<Navigate to='/products' />}></Route>
+              <Route path="/" element={<Navigate to="/products" />}></Route>
 
-              <Route path='/products' element={<ProductsList />}>
-              </Route>
-              <Route path='/products/:id' element={<ProductPage />} />
+              <Route path="/products" element={<ProductsList />}></Route>
+              <Route path="/products/:id" element={<ProductPage />} />
 
-              <Route path='/about' element={<AboutPage />} />
+              <Route path="/about" element={<AboutPage />} />
             </Routes>
           </Provider>
         </ModalState>
