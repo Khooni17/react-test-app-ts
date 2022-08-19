@@ -9,8 +9,10 @@ interface IModalContext {
 export const ModalContext = createContext<IModalContext>({
     modal: false,
     open: () => {
+        return
     },
     close: () => {
+        return
     }
 })
 

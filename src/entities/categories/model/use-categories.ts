@@ -8,17 +8,16 @@ import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 export const useCategories = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        try {
-            fetchCategories()
-                .then(categories => {
-                    dispatch(setCategoriesAction(categories.map(
-                        (el: string) => ({title: el, id: generateUniqueID()})))
-                    )
-                })
-                .catch(error => dispatch(setCategoriesAction([])))
-        } catch (e) {
+        fetchCategories()
+            .then(categories => {
+                dispatch(setCategoriesAction(categories.map(
+                    (el: string) => ({title: el, id: generateUniqueID()})))
+                )
+            })
+            .catch(
+                error => dispatch(setCategoriesAction([]))
+            )
 
-        }
     }, [])
 
     const selectedCategory = useSelector((state: storeModel) => state.categories.selectedCategory);
