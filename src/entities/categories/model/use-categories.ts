@@ -1,26 +1,24 @@
 import {useEffect} from "react";
 import {fetchCategories} from "../api/fetch-categories";
-import {setCategoriesAction} from "../../../store/categoriesReducer/categoriesReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {storeModel} from "../../../store/storeModel";
-import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
+import { TStoreModel } from '../../../store/storeModel';
 
 export const useCategories = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         fetchCategories()
             .then(categories => {
-                dispatch(setCategoriesAction(categories.map(
-                    (el: string) => ({title: el, id: generateUniqueID()})))
-                )
+                // dispatch(setCategoriesAction(categories.map(
+                //     (el: string) => ({title: el, id: generateUniqueID()})))
+                // )
             })
             .catch(
-                error => dispatch(setCategoriesAction([]))
+                // error => dispatch(setCategoriesAction([]))
             )
 
     }, [])
 
-    const selectedCategory = useSelector((state: storeModel) => state.categories.selectedCategory);
-    const categories = useSelector((state: storeModel) => state.categories.categories);
+    const selectedCategory = useSelector((state:TStoreModel) => state.categories.selected);
+    const categories = useSelector((state:TStoreModel) => state.categories.data);
     return {selectedCategory, categories, dispatch}
 }

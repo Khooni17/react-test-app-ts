@@ -1,7 +1,5 @@
-import {TCategoriesStateModel} from "./categoriesReducer/TCategoriesStateModel";
-import {TProductsStateModel} from "./productsReducer/TProductsStateModel";
+import { TCategoriesState } from './slices/categories/categoriesModel';
 
-export type storeModel = {
-    categories: TCategoriesStateModel;
-    products: TProductsStateModel;
+export type TStoreModel = {
+  categories: TCategoriesState
 }
