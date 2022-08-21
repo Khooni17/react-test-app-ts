@@ -7,7 +7,7 @@ export const Categories = () => {
 
     return (
         <ul className="fixed top-15 left-5">
-            {categories.map((cat) =>
+            {categories.map((cat, index) =>
                     <li
                         key={cat.id}
                         onClick={() => dispatch(selectCategoryAction(cat.id))}

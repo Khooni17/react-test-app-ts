@@ -1,24 +1,15 @@
 import {useEffect} from "react";
-import {fetchCategories} from "../api/fetch-categories";
-import {useDispatch, useSelector} from "react-redux";
 import { TStoreModel } from '../../../store/storeModel';
+import { fetchCategories } from '../../../store/slices/categories/categoriesSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 export const useCategories = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
-        fetchCategories()
-            .then(categories => {
-                // dispatch(setCategoriesAction(categories.map(
-                //     (el: string) => ({title: el, id: generateUniqueID()})))
-                // )
-            })
-            .catch(
-                // error => dispatch(setCategoriesAction([]))
-            )
-
+        dispatch(fetchCategories())
     }, [])
 
-    const selectedCategory = useSelector((state:TStoreModel) => state.categories.selected);
-    const categories = useSelector((state:TStoreModel) => state.categories.data);
+    const selectedCategory = useAppSelector((state:TStoreModel) => state.categories.selected);
+    const categories = useAppSelector((state:TStoreModel) => state.categories.data);
     return {selectedCategory, categories, dispatch}
 }
