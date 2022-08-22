@@ -29,8 +29,6 @@ export function ProductsList() {
   //   close();
   //   dispatch(addProductAction(product));
   // };
-
-  console.log('sss');
   return (
     <div className="container mx-auto max-w-2xl pt-5">
       {/*{loading && <Loader />}*/}
