@@ -7,7 +7,7 @@ import { ErrorMessage } from '../../../entities/common/ErrorMessage';
 import { Product } from '../../../entities/Product';
 import { Modal } from '../../../entities/common/Modal';
 import { CreateProduct } from '../../../entities/CreateProduct';
-import { Categories } from '../../../entities/categories';
+import { CategoriesList } from '../../../entities/categories';
 import { Cart } from '../../../entities/common/cart';
 import { useDispatch } from 'react-redux';
 
@@ -30,11 +30,12 @@ export function ProductsList() {
   //   dispatch(addProductAction(product));
   // };
 
+  console.log('sss');
   return (
     <div className="container mx-auto max-w-2xl pt-5">
       {/*{loading && <Loader />}*/}
       {/*{error && <ErrorMessage error={error} />}*/}
-      <Categories />
+      <CategoriesList />
 {/*      {products.map((product) => (
         <Product key={product.id} product={product} />
       ))}*/}

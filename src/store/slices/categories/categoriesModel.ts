@@ -4,6 +4,6 @@ export type TCategory = {
 }
 
 export type TCategoriesState = {
-  data: TCategory[],
+  data: Record<number, TCategory>,
   selected: number,
 }

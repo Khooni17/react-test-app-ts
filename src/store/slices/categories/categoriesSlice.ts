@@ -1,32 +1,36 @@
-import { createSlice, createAsyncThunk, AnyAction } from '@reduxjs/toolkit';
-import { TCategoriesState } from './categoriesModel';
+import { createSlice, createAsyncThunk, PayloadAction, createSelector } from '@reduxjs/toolkit';
+import { TCategoriesState, TCategory } from './categoriesModel';
 import axios from 'axios';
+import { TStoreModel } from '../../storeModel';
 
 const initialState: TCategoriesState = {
-  data: [
-    { title: '1', id: 1 },
-    { title: '2', id: 2 },
-  ],
+  data: {},
   selected: 0,
 };
 
-
-export const fetchCategories = createAsyncThunk('categories/getCategories',
-  async (_, { rejectWithValue, dispatch }) => {
-    let categories = (await axios.get('https://fakestoreapi.com/products/categories')).data;
-    categories = categories.map((el: string, index: number) => ({ title: el, id: index }));
-    console.log(categories)
-    dispatch(setCategories(categories));
-  });
+export const fetchCategories = createAsyncThunk('categories/getCategories', async (_, {
+  rejectWithValue,
+  dispatch,
+}) => {
+  const categories = (await axios.get<string[]>('https://fakestoreapi.com/products/categories')).data.map<TCategory>((el, index) => ({
+    title: el,
+    id: index,
+  }));
+  const categoriesReduced = categories.reduce<Record<number, TCategory>>((acc, item) => {
+    acc[item.id] = item;
+    return acc;
+  }, {});
+  dispatch(setCategories(categoriesReduced));
+});
 
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    selectCategoryAction: (state, action) => {
-      state.selected = action.payload;
+    selectCategoryAction: (state, action: PayloadAction<{ categoryId: number }>) => {
+      state.selected = action.payload.categoryId;
     },
-    setCategories: (state, action) => {
+    setCategories: (state, action: PayloadAction<Record<number, TCategory>>) => {
       state.data = action.payload;
     },
   },
@@ -44,5 +48,15 @@ const categoriesSlice = createSlice({
   },
 });
 
+export const selectIDsCategories = createSelector([
+  (state:TStoreModel)  => state.categories.data
+], (data) => Object.keys(data).map(el => parseInt(el)))
+
+export const getCategoryByID = (state: TStoreModel, id: number) => state.categories.data[id];
 export const { selectCategoryAction, setCategories } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
+
+
+// example
+// const selector = createSelector([state => state.data, state => state.selected, (state, id) => id,], (data, selected, id) => {
+// })
